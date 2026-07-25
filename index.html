@@ -39,54 +39,40 @@
   }
   .wrap{max-width:1180px;margin:0 auto;}
 
-  /* ---------- Header ---------- */
   .topbar{
     display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
-    flex-wrap:wrap;
-    border-bottom:1px solid var(--border);
-    padding-bottom:18px;margin-bottom:18px;
+    flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:18px;
   }
   .brand-eyebrow{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;letter-spacing:.18em;color:var(--primary);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--primary);
     text-transform:uppercase;margin-bottom:6px;
   }
-  h1{
-    font-family:'Oswald',sans-serif;font-weight:600;font-size:32px;
-    letter-spacing:.01em;margin:0;text-transform:uppercase;color:var(--text);
-  }
-  .subtitle{color:var(--muted);font-size:13.5px;margin-top:6px;max-width:560px;}
+  h1{font-family:'Oswald',sans-serif;font-weight:600;font-size:32px;letter-spacing:.01em;margin:0;text-transform:uppercase;color:var(--text);}
+  .subtitle{color:var(--muted);font-size:13.5px;margin-top:6px;max-width:600px;}
 
-  /* ---------- Nav ---------- */
   .nav{display:flex;gap:8px;margin-bottom:22px;}
   .nav-btn{
-    font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.03em;
-    font-size:13.5px;background:var(--panel);border:1px solid var(--border);
-    color:var(--muted);padding:11px 20px;border-radius:9px;cursor:pointer;
-    display:flex;align-items:center;gap:8px;transition:all .2s ease;box-shadow:var(--shadow);
+    font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:13.5px;
+    background:var(--panel);border:1px solid var(--border);color:var(--muted);
+    padding:11px 20px;border-radius:9px;cursor:pointer;display:flex;align-items:center;gap:8px;
+    transition:all .2s ease;box-shadow:var(--shadow);
   }
   .nav-btn.active{background:var(--primary);color:#fff;border-color:var(--primary);}
-  .nav-btn .badge{
-    font-family:'IBM Plex Mono',monospace;font-size:10.5px;
-    background:var(--primary-tint);color:var(--primary);padding:1px 7px;border-radius:10px;
-  }
+  .nav-btn .badge{font-family:'IBM Plex Mono',monospace;font-size:10.5px;background:var(--primary-tint);color:var(--primary);padding:1px 7px;border-radius:10px;}
   .nav-btn.active .badge{background:rgba(255,255,255,.25);color:#fff;}
 
   .screen{display:none;}
   .screen.active{display:block;}
 
-  /* ---------- Input screen: plate fields ---------- */
   .plate-box{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
   .field{display:flex;flex-direction:column;gap:4px;}
   .field label{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
   .field input{
     background:var(--panel);border:1px solid var(--border);color:var(--text);
-    font-family:'IBM Plex Mono',monospace;font-size:14px;padding:9px 12px;
-    border-radius:6px;min-width:150px;
+    font-family:'IBM Plex Mono',monospace;font-size:14px;padding:9px 12px;border-radius:6px;min-width:150px;
   }
   .field input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-tint);}
 
-  /* ---------- Instrument row ---------- */
   .instrument-row{display:grid;grid-template-columns:280px 1fr;gap:18px;margin-bottom:26px;}
   @media(max-width:760px){.instrument-row{grid-template-columns:1fr;}}
 
@@ -95,16 +81,16 @@
     display:flex;flex-direction:column;align-items:center;position:relative;box-shadow:var(--shadow);
   }
   .gauge-panel::before{
-    content:"SKOR INSPEKSI";font-family:'IBM Plex Mono',monospace;
-    font-size:10.5px;letter-spacing:.15em;color:var(--muted);
+    content:"NILAI AKHIR";font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.15em;color:var(--muted);
     position:absolute;top:16px;left:18px;
   }
   #gaugeSvg{width:220px;margin-top:22px;}
-  .score-readout{font-family:'Oswald',sans-serif;font-size:52px;font-weight:600;margin-top:-56px;line-height:1;}
+  .score-readout{font-family:'Oswald',sans-serif;font-size:48px;font-weight:600;margin-top:-56px;line-height:1;}
   .score-status{
-    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.06em;
-    text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-top:10px;border:1px solid transparent;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;text-transform:uppercase;
+    padding:5px 12px;border-radius:20px;margin-top:10px;border:1px solid transparent;text-align:center;
   }
+  .score-forced{font-size:10.5px;color:var(--red);margin-top:8px;text-align:center;font-family:'IBM Plex Mono',monospace;}
 
   .telltales-panel{
     background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:18px 20px;
@@ -114,8 +100,7 @@
   .telltales{display:flex;gap:14px;flex-wrap:wrap;}
   .lamp{
     flex:1;min-width:220px;display:flex;align-items:center;gap:12px;
-    background:var(--panel-2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;
-    transition:all .25s ease;
+    background:var(--panel-2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;transition:all .25s ease;
   }
   .lamp .icon{
     width:38px;height:38px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -130,7 +115,6 @@
   .lamp-text .label{font-family:'Oswald',sans-serif;font-size:14.5px;text-transform:uppercase;letter-spacing:.02em;}
   .lamp-text .detail{font-size:11.5px;color:var(--muted);margin-top:2px;}
 
-  /* ---------- Tabs ---------- */
   .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
   .tab{
     font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:13.5px;
@@ -141,17 +125,26 @@
   .tab.active{background:var(--text);color:#fff;border-color:var(--text);}
   .tab.active .count{color:#cfd4e6;}
 
-  /* ---------- Checklist ---------- */
   .section{background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:22px;box-shadow:var(--shadow);}
   .section-head{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
   .section-head h2{font-family:'Oswald',sans-serif;font-size:16px;margin:0;text-transform:uppercase;font-weight:500;letter-spacing:.02em;}
   .section-head span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
 
-  .item-row{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border);gap:16px;flex-wrap:wrap;}
+  .item-row{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 20px;border-bottom:1px solid var(--border);gap:16px;flex-wrap:wrap;}
   .item-row:last-child{border-bottom:none;}
-  .item-info{min-width:200px;}
+  .item-info{min-width:220px;}
+  .item-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
   .item-name{font-size:14.5px;font-weight:500;}
+  .weight-badge{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--primary);background:var(--primary-tint);
+    padding:2px 8px;border-radius:10px;
+  }
+  .safety-badge{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);background:var(--red-tint);
+    padding:2px 8px;border-radius:10px;display:inline-flex;align-items:center;gap:3px;
+  }
   .item-note{font-size:11.5px;color:var(--muted);margin-top:3px;max-width:340px;}
+  .contrib-readout{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-top:6px;}
   .cond-input{
     margin-top:8px;width:100%;max-width:320px;
     background:var(--panel-2);border:1px solid var(--border);color:var(--text);
@@ -160,24 +153,23 @@
   .cond-input:focus{outline:none;border-color:var(--primary);}
   .cond-input::placeholder{color:#a2a9b8;}
 
-  .status-btns{display:flex;gap:6px;flex-wrap:wrap;}
+  .status-btns{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
   .status-btn{
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:8px 12px;border-radius:7px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;padding:8px 11px;border-radius:7px;
     border:1px solid var(--border);background:var(--panel-2);color:var(--muted);cursor:pointer;
     transition:all .15s ease;white-space:nowrap;
   }
   .status-btn:hover{border-color:#b7bdcc;color:var(--text);}
-  .status-btn.sel-ok{background:var(--text);color:#fff;border-color:var(--text);}
+  .status-btn.sel-baik{background:var(--text);color:#fff;border-color:var(--text);}
   .status-btn.sel-minor{background:var(--green);color:#fff;border-color:var(--green);}
   .status-btn.sel-major{background:var(--amber);color:#fff;border-color:var(--amber);}
   .status-btn.sel-fatal{background:var(--red);color:#fff;border-color:var(--red);}
 
-  /* ---------- Summary ---------- */
   .summary-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;}
   @media(max-width:800px){.summary-grid{grid-template-columns:1fr;}}
   .summary-panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow);}
   .summary-panel h3{font-family:'Oswald',sans-serif;font-size:15px;text-transform:uppercase;margin:0 0 12px;letter-spacing:.02em;color:var(--muted);}
-  .finding{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);font-size:13.5px;}
+  .finding{padding:8px 0;border-bottom:1px dashed var(--border);font-size:13.5px;}
   .finding:last-child{border-bottom:none;}
   .finding .tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:12px;margin-left:8px;}
   .tag.minor{background:var(--green-tint);color:var(--green);}
@@ -188,11 +180,12 @@
   .rules-list{display:flex;flex-direction:column;gap:12px;}
   .rule{display:flex;gap:10px;font-size:13px;color:var(--muted);padding:10px;border-radius:9px;background:var(--panel-2);border:1px solid var(--border);}
   .rule b{color:var(--text);}
-  .rule.trig{border-color:var(--amber);background:var(--amber-tint);color:#8a5c11;}
+  .rule.trig{border-color:var(--red);background:var(--red-tint);color:#992b28;}
 
   .legend{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 20px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
   .legend span{display:flex;align-items:center;gap:6px;}
   .dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+  .dot.baik{background:var(--text);}
   .dot.minor{background:var(--green);}
   .dot.major{background:var(--amber);}
   .dot.fatal{background:var(--red);}
@@ -200,14 +193,12 @@
   .action-row{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap;}
   .reset-btn{
     font-family:'IBM Plex Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;
-    background:var(--panel);border:1px solid var(--border);color:var(--muted);
-    padding:9px 16px;border-radius:7px;cursor:pointer;
+    background:var(--panel);border:1px solid var(--border);color:var(--muted);padding:9px 16px;border-radius:7px;cursor:pointer;
   }
   .reset-btn:hover{border-color:var(--red);color:var(--red);}
   .save-btn{
     font-family:'IBM Plex Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em;
-    background:var(--primary);border:1px solid var(--primary);color:#fff;font-weight:600;
-    padding:10px 20px;border-radius:7px;cursor:pointer;
+    background:var(--primary);border:1px solid var(--primary);color:#fff;font-weight:600;padding:10px 20px;border-radius:7px;cursor:pointer;
   }
   .save-btn:hover{filter:brightness(1.06);}
   .save-btn:disabled{opacity:.5;cursor:not-allowed;}
@@ -217,19 +208,11 @@
 
   footer{text-align:center;color:var(--muted);font-size:11.5px;margin-top:30px;font-family:'IBM Plex Mono',monospace;}
 
-  /* ---------- Dashboard screen ---------- */
   .charts-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:16px;margin-bottom:22px;}
   @media(max-width:900px){.charts-grid{grid-template-columns:1fr;}}
-  .chart-card{
-    background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px 18px;
-    box-shadow:var(--shadow);display:flex;flex-direction:column;
-  }
-  .chart-card h4{
-    font-family:'Oswald',sans-serif;font-size:13.5px;text-transform:uppercase;letter-spacing:.02em;
-    margin:0 0 12px;color:var(--muted);
-  }
+  .chart-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+  .chart-card h4{font-family:'Oswald',sans-serif;font-size:13.5px;text-transform:uppercase;letter-spacing:.02em;margin:0 0 12px;color:var(--muted);}
   .chart-card .chart-wrap{position:relative;height:190px;}
-  .chart-empty{color:var(--muted);font-size:12.5px;font-style:italic;text-align:center;margin:auto;}
 
   .dash-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;}
   .dash-toolbar input{
@@ -239,8 +222,7 @@
   .dash-toolbar input:focus{outline:none;border-color:var(--primary);}
   .refresh-btn{
     font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;
-    background:var(--panel);border:1px solid var(--border);color:var(--muted);
-    padding:9px 14px;border-radius:8px;cursor:pointer;box-shadow:var(--shadow);
+    background:var(--panel);border:1px solid var(--border);color:var(--muted);padding:9px 14px;border-radius:8px;cursor:pointer;box-shadow:var(--shadow);
   }
   .refresh-btn:hover{color:var(--primary);border-color:var(--primary);}
 
@@ -255,61 +237,45 @@
   .fleet-card .meta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px;}
   .fleet-card .row2{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
   .fleet-card .score{font-family:'Oswald',sans-serif;font-size:26px;}
-  .fleet-card .status-pill{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;padding:4px 9px;border-radius:12px;}
+  .fleet-card .status-pill{font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;padding:4px 9px;border-radius:12px;text-align:right;}
   .fleet-card .counts{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
   .mini-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:10px;}
 
-  .dash-empty{
-    text-align:center;color:var(--muted);padding:60px 20px;border:1px dashed var(--border);border-radius:14px;
-    font-size:13.5px;background:var(--panel);
-  }
+  .dash-empty{text-align:center;color:var(--muted);padding:60px 20px;border:1px dashed var(--border);border-radius:14px;font-size:13.5px;background:var(--panel);}
   .dash-loading{text-align:center;color:var(--muted);padding:40px 20px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;}
   .storage-note{
     font-size:11.5px;color:var(--muted);margin-bottom:16px;font-family:'IBM Plex Mono',monospace;
     border:1px solid var(--border);border-radius:8px;padding:8px 12px;background:var(--panel);
   }
 
-  /* ---------- Detail overlay ---------- */
-  .overlay{
-    display:none;position:fixed;inset:0;background:rgba(27,35,51,.45);
-    align-items:flex-start;justify-content:center;padding:40px 16px;z-index:50;overflow:auto;
-  }
+  .overlay{display:none;position:fixed;inset:0;background:rgba(27,35,51,.45);align-items:flex-start;justify-content:center;padding:40px 16px;z-index:50;overflow:auto;}
   .overlay.active{display:flex;}
-  .detail-card{
-    background:var(--panel);border:1px solid var(--border);border-radius:16px;
-    max-width:640px;width:100%;padding:26px 28px;position:relative;box-shadow:0 20px 60px rgba(20,24,40,.18);
-  }
-  .detail-close{
-    position:absolute;top:16px;right:18px;background:transparent;border:none;color:var(--muted);
-    font-size:20px;cursor:pointer;line-height:1;
-  }
+  .detail-card{background:var(--panel);border:1px solid var(--border);border-radius:16px;max-width:640px;width:100%;padding:26px 28px;position:relative;box-shadow:0 20px 60px rgba(20,24,40,.18);}
+  .detail-close{position:absolute;top:16px;right:18px;background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;}
   .detail-close:hover{color:var(--text);}
   .detail-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;margin-bottom:18px;}
   .detail-plate{font-family:'Oswald',sans-serif;font-size:26px;text-transform:uppercase;}
   .detail-meta{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);margin-top:4px;}
   .detail-score{text-align:right;}
   .detail-score .num{font-family:'Oswald',sans-serif;font-size:38px;}
+  .detail-tlo-banner{
+    background:var(--red-tint);border:1px solid var(--red);color:#992b28;font-size:12px;
+    padding:9px 12px;border-radius:8px;margin-bottom:14px;font-family:'IBM Plex Mono',monospace;
+  }
   .detail-section-title{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin:18px 0 8px;}
   .detail-finding{padding:10px 0;border-bottom:1px dashed var(--border);}
   .detail-finding:last-child{border-bottom:none;}
   .detail-finding-top{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;}
   .detail-finding-cond{font-size:12px;color:var(--muted);margin-top:3px;font-style:italic;}
-  .repair-toggle{
-    display:flex;align-items:center;gap:6px;margin-top:7px;
-    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);cursor:pointer;user-select:none;
-  }
+  .repair-toggle{display:flex;align-items:center;gap:6px;margin-top:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);cursor:pointer;user-select:none;}
   .repair-toggle input{accent-color:var(--green);width:14px;height:14px;cursor:pointer;}
   .detail-finding.is-repaired .detail-finding-top span:first-child{text-decoration:line-through;color:var(--muted);}
-  .repair-progress{
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);
-    margin:14px 0 4px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--panel-2);
-  }
+  .repair-progress{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);margin:14px 0 4px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--panel-2);}
   .repair-progress.done{color:var(--green);border-color:var(--green);background:var(--green-tint);}
   .detail-actions{display:flex;gap:10px;margin-top:20px;border-top:1px solid var(--border);padding-top:16px;}
   .edit-btn{
     font-family:'IBM Plex Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;
-    background:var(--panel-2);border:1px solid var(--border);color:var(--text);
-    padding:9px 16px;border-radius:7px;cursor:pointer;
+    background:var(--panel-2);border:1px solid var(--border);color:var(--text);padding:9px 16px;border-radius:7px;cursor:pointer;
   }
   .edit-btn:hover{border-color:var(--primary);color:var(--primary);}
 </style>
@@ -319,9 +285,9 @@
 
   <div class="topbar">
     <div>
-      <div class="brand-eyebrow">Sistem Penilaian Kelaikan Armada</div>
+      <div class="brand-eyebrow">Sistem Penilaian Kelaikan Armada &middot; Berbasis Bobot</div>
       <h1>Dashboard Inspeksi Armada</h1>
-      <div class="subtitle">Catat temuan per komponen, simpan hasilnya, lalu lihat seluruh armada beserta jenis kerusakan dan tren kondisinya di Dashboard Armada.</div>
+      <div class="subtitle">Tiap item punya bobot tetap (total 100%). Kondisi Baik/Minor/Major/Fatal menentukan berapa persen bobot itu yang didapat. Temuan Fatal pada item keselamatan otomatis membuat armada Tidak Layak Operasional.</div>
     </div>
   </div>
 
@@ -361,7 +327,8 @@
           <text x="192" y="135" font-family="IBM Plex Mono" font-size="9" fill="#9aa3b2">100</text>
         </svg>
         <div class="score-readout" id="scoreReadout">100</div>
-        <div class="score-status" id="scoreStatus">Sangat Baik</div>
+        <div class="score-status" id="scoreStatus">Layak Operasional</div>
+        <div class="score-forced" id="scoreForced" style="display:none;"></div>
       </div>
 
       <div class="telltales-panel">
@@ -370,15 +337,15 @@
           <div class="lamp" id="lampFatal">
             <div class="icon">&#9888;</div>
             <div class="lamp-text">
-              <div class="label">Temuan Fatal</div>
-              <div class="detail" id="lampFatalDetail">Tidak ada temuan fatal</div>
+              <div class="label">Fatal &middot; Item Keselamatan</div>
+              <div class="detail" id="lampFatalDetail">Tidak ada temuan fatal pada item keselamatan</div>
             </div>
           </div>
           <div class="lamp" id="lampMajor">
             <div class="icon">&#128295;</div>
             <div class="lamp-text">
-              <div class="label">Major &ge; 3</div>
-              <div class="detail" id="lampMajorDetail">0 temuan major</div>
+              <div class="label">Total Temuan</div>
+              <div class="detail" id="lampMajorDetail">0 item bukan kondisi Baik</div>
             </div>
           </div>
           <div class="lamp" id="lampReady">
@@ -393,9 +360,10 @@
     </div>
 
     <div class="legend">
-      <span><span class="dot minor"></span> Minor &minus;2 poin &mdash; kosmetik, fungsi &amp; keselamatan aman</span>
-      <span><span class="dot major"></span> Major &minus;5 poin &mdash; ganggu fungsi, masih bisa jalan dengan catatan</span>
-      <span><span class="dot fatal"></span> Fatal &minus;10 poin &mdash; bahaya keselamatan, tidak layak jalan</span>
+      <span><span class="dot baik"></span> Baik &mdash; 100% bobot</span>
+      <span><span class="dot minor"></span> Minor &mdash; 75% bobot</span>
+      <span><span class="dot major"></span> Major &mdash; 50% bobot</span>
+      <span><span class="dot fatal"></span> Fatal &mdash; 0% bobot, dan jika item keselamatan &rarr; otomatis TLO</span>
     </div>
 
     <div class="tabs" id="tabs"></div>
@@ -404,7 +372,7 @@
     <div class="summary-grid">
       <div class="summary-panel">
         <h3>Ringkasan Temuan</h3>
-        <div id="findingsList"><div class="empty-note">Belum ada kerusakan dicatat.</div></div>
+        <div id="findingsList"><div class="empty-note">Semua item masih dalam kondisi Baik.</div></div>
         <div class="action-row">
           <button class="save-btn" id="saveBtn">Simpan ke Dashboard</button>
           <button class="reset-btn" id="resetBtn">Reset Penilaian</button>
@@ -412,16 +380,17 @@
         </div>
       </div>
       <div class="summary-panel">
-        <h3>Aturan Tindak Lanjut</h3>
+        <h3>Aturan Penilaian</h3>
         <div class="rules-list">
-          <div class="rule" id="ruleFatal"><span>&#9679;</span><div>Jika ditemukan <b>1 item Fatal</b>, armada tidak boleh beroperasi sampai kerusakan diperbaiki &mdash; berapa pun nilai totalnya.</div></div>
-          <div class="rule" id="ruleMajor"><span>&#9679;</span><div>Jika terdapat <b>3 atau lebih temuan Major</b>, armada wajib dijadwalkan perbaikan maksimal <b>7 hari</b>.</div></div>
-          <div class="rule"><span>&#9679;</span><div>Temuan <b>Minor</b> dapat diperbaiki bersamaan dengan jadwal preventive maintenance berikutnya.</div></div>
+          <div class="rule"><span>&#9679;</span><div>Tiap item punya <b>bobot tetap</b> (total seluruh bobot = 100%). Nilai akhir = jumlah (bobot &times; hasil kondisi) semua item.</div></div>
+          <div class="rule"><span>&#9679;</span><div>Kondisi <b>Baik = 100%</b>, <b>Minor = 75%</b>, <b>Major = 50%</b>, <b>Fatal = 0%</b> dari bobot item tersebut.</div></div>
+          <div class="rule" id="ruleFatal"><span>&#9679;</span><div>Jika ada temuan <b>Fatal pada item keselamatan</b> (Ban, Lampu-Lampu, Spion, Stir &amp; Klakson, Pintu Box Belakang) &mdash; armada otomatis <b>Tidak Layak Operasional</b>, berapa pun nilai totalnya.</div></div>
+          <div class="rule"><span>&#9679;</span><div>&ge;85 = Layak Operasional &middot; 75&ndash;84 = Layak dengan Perbaikan &middot; &lt;75 = Tidak Layak Operasional.</div></div>
         </div>
       </div>
     </div>
 
-    <footer>Nilai 95&ndash;100 Sangat Baik &middot; 85&ndash;94 Baik &middot; 70&ndash;84 Perlu Perbaikan &middot; &lt;70 Tidak Layak Operasional</footer>
+    <footer>Nilai Akhir = &Sigma; (Bobot Item &times; % Kondisi) &middot; Maksimal 100</footer>
   </div>
 
   <!-- ============ SCREEN: DASHBOARD ============ -->
@@ -434,11 +403,11 @@
         <div class="chart-wrap"><canvas id="statusChart"></canvas></div>
       </div>
       <div class="chart-card">
-        <h4>Total Temuan per Kategori</h4>
+        <h4>Total Temuan per Kondisi</h4>
         <div class="chart-wrap"><canvas id="categoryChart"></canvas></div>
       </div>
       <div class="chart-card">
-        <h4>Skor per Armada</h4>
+        <h4>Nilai Akhir per Armada</h4>
         <div class="chart-wrap"><canvas id="scoreChart"></canvas></div>
       </div>
     </div>
@@ -466,56 +435,63 @@
         <div class="score-status" id="detailStatus">-</div>
       </div>
     </div>
+    <div id="detailTloBanner"></div>
     <div id="detailFindings"></div>
   </div>
 </div>
 
 <script>
+/* Bobot per item (total = 100). safety:true = item keselamatan -> Fatal disini memicu TLO otomatis */
 const DATA = {
   A: {
     title: "A. Kabin Luar",
     items: [
-      {name:"Bemper Depan", allowed:["minor","major"]},
-      {name:"Pintu Kabin Luar", allowed:["major"]},
-      {name:"Spion", allowed:["fatal"]},
-      {name:"Wiper", allowed:["major"]},
-      {name:"Lampu-Lampu", allowed:["fatal"]},
-      {name:"Plat Nomor", allowed:["major"]},
-      {name:"Topi Kabin", allowed:["minor"]},
+      {name:"Bemper Depan", weight:3},
+      {name:"Pintu Kabin Luar", weight:4},
+      {name:"Spion", weight:6, safety:true},
+      {name:"Wiper", weight:3},
+      {name:"Lampu-Lampu", weight:8, safety:true},
+      {name:"Plat Nomor", weight:3},
+      {name:"Topi Kabin", weight:2},
     ]
   },
   B: {
     title: "B. Kabin Dalam",
     items: [
-      {name:"Dashboard", allowed:["minor"]},
-      {name:"Jok Armada", allowed:["minor"]},
-      {name:"Pintu Kabin Dalam", allowed:["major"]},
-      {name:"Atap Dalam Kabin", allowed:["minor"]},
-      {name:"Lantai Kabin", allowed:["minor"]},
-      {name:"Kabin Belakang Jok", allowed:["minor"]},
-      {name:"Stir & Klakson", allowed:["fatal"]},
+      {name:"Dashboard", weight:2},
+      {name:"Jok Armada", weight:2},
+      {name:"Pintu Kabin Dalam", weight:4},
+      {name:"Atap Dalam Kabin", weight:2},
+      {name:"Lantai Kabin", weight:2},
+      {name:"Kabin Belakang Jok", weight:2},
+      {name:"Stir & Klakson", weight:7, safety:true},
     ]
   },
   C: {
     title: "C. Bagian Box",
     items: [
-      {name:"Branding", allowed:["minor"]},
-      {name:"Perisai Samping", allowed:["major"]},
-      {name:"Ban Terpasang + Ban Serep", allowed:["fatal"]},
-      {name:"Body Box Kanan dan Kiri", allowed:["major"]},
-      {name:"Engsel Box", allowed:["major"]},
-      {name:"Triplek Box", allowed:["minor"]},
-      {name:"Spakbor Belakang", allowed:["minor"]},
-      {name:"Pintu Box Belakang", allowed:["major","fatal"], note:"Major secara default. Jadi Fatal jika tidak dapat mengunci atau berpotensi terbuka saat perjalanan."},
+      {name:"Branding", weight:3},
+      {name:"Perisai Samping", weight:5},
+      {name:"Ban Terpasang + Ban Serep", weight:12, safety:true},
+      {name:"Body Box Kanan dan Kiri", weight:6},
+      {name:"Engsel Box", weight:5},
+      {name:"Triplek Box", weight:3},
+      {name:"Spakbor Belakang", weight:3},
+      {name:"Pintu Box Belakang", weight:13, safety:true, note:"Item keselamatan. Fatal jika tidak dapat mengunci atau berpotensi terbuka saat perjalanan."},
     ]
   }
 };
 
-const LABELS = {ok:"OK", minor:"Minor \u22122", major:"Major \u22125", fatal:"Fatal \u221210"};
-const POINTS = {ok:0, minor:2, major:5, fatal:10};
+const CONDITIONS = {
+  baik:  {label:"Baik",  pct:100, mult:1},
+  minor: {label:"Minor", pct:75,  mult:0.75},
+  major: {label:"Major", pct:50,  mult:0.5},
+  fatal: {label:"Fatal", pct:0,   mult:0}
+};
+const LABELS = {baik:"Baik 100%", minor:"Minor 75%", major:"Major 50%", fatal:"Fatal 0%"};
 
 const state = {A:{}, B:{}, C:{}};
-Object.keys(DATA).forEach(k => DATA[k].items.forEach(it => state[k][it.name] = {status:'ok', note:''}));
+Object.keys(DATA).forEach(k => DATA[k].items.forEach(it => state[k][it.name] = {status:'baik', note:''}));
 
 let activeTab = 'A';
 let lastComputed = null;
@@ -545,7 +521,7 @@ function renderEditBanner(){
       cancelBtn.textContent = 'Batal Edit';
       cancelBtn.onclick = () => {
         editingKey = null; editingTimestamp = null;
-        Object.keys(DATA).forEach(k => DATA[k].items.forEach(it => state[k][it.name] = {status:'ok', note:''}));
+        Object.keys(DATA).forEach(k => DATA[k].items.forEach(it => state[k][it.name] = {status:'baik', note:''}));
         document.getElementById('plateInput').value = '';
         document.getElementById('officerInput').value = '';
         document.getElementById('dateInput').valueAsDate = new Date();
@@ -563,7 +539,7 @@ function renderEditBanner(){
 function renderTabs(){
   tabsEl.innerHTML = '';
   Object.keys(DATA).forEach(key => {
-    const rusak = DATA[key].items.filter(it => state[key][it.name].status !== 'ok').length;
+    const rusak = DATA[key].items.filter(it => state[key][it.name].status !== 'baik').length;
     const btn = document.createElement('div');
     btn.className = 'tab' + (activeTab === key ? ' active' : '');
     btn.innerHTML = DATA[key].title.split('. ')[1] + (rusak ? `<span class="count">${rusak} temuan</span>` : '');
@@ -581,16 +557,26 @@ function renderSections(){
 
   const head = document.createElement('div');
   head.className = 'section-head';
-  head.innerHTML = `<h2>${sec.title}</h2><span>${sec.items.length} item diperiksa</span>`;
+  const totalWeight = sec.items.reduce((s,it)=>s+it.weight,0);
+  head.innerHTML = `<h2>${sec.title}</h2><span>${sec.items.length} item &middot; total bobot ${totalWeight}%</span>`;
   wrap.appendChild(head);
 
   sec.items.forEach(it => {
     const row = document.createElement('div');
     row.className = 'item-row';
+    const cur = state[key][it.name];
 
     const info = document.createElement('div');
     info.className = 'item-info';
-    info.innerHTML = `<div class="item-name">${it.name}</div>` + (it.note ? `<div class="item-note">${it.note}</div>` : '');
+    info.innerHTML = `
+      <div class="item-name-row">
+        <span class="item-name">${it.name}</span>
+        <span class="weight-badge">Bobot ${it.weight}%</span>
+        ${it.safety ? '<span class="safety-badge">&#9888; Keselamatan</span>' : ''}
+      </div>
+      ${it.note ? `<div class="item-note">${it.note}</div>` : ''}
+      <div class="contrib-readout">Kontribusi: ${(it.weight * CONDITIONS[cur.status].mult).toFixed(2)} / ${it.weight}</div>
+    `;
     row.appendChild(info);
 
     const right = document.createElement('div');
@@ -602,22 +588,21 @@ function renderSections(){
     const btns = document.createElement('div');
     btns.className = 'status-btns';
 
-    const options = ['ok', ...it.allowed];
-    options.forEach(opt => {
+    ['baik','minor','major','fatal'].forEach(opt => {
       const b = document.createElement('button');
-      b.className = 'status-btn' + (state[key][it.name].status === opt ? ' sel-' + opt : '');
+      b.className = 'status-btn' + (cur.status === opt ? ' sel-' + opt : '');
       b.textContent = LABELS[opt];
       b.onclick = () => { state[key][it.name].status = opt; render(); };
       btns.appendChild(b);
     });
     right.appendChild(btns);
 
-    if (state[key][it.name].status !== 'ok'){
+    if (cur.status !== 'baik'){
       const noteInput = document.createElement('input');
       noteInput.type = 'text';
       noteInput.className = 'cond-input';
       noteInput.placeholder = 'Keterangan kondisi, mis. "retak di sudut kiri"';
-      noteInput.value = state[key][it.name].note || '';
+      noteInput.value = cur.note || '';
       noteInput.oninput = (e) => { state[key][it.name].note = e.target.value; };
       right.appendChild(noteInput);
     }
@@ -634,43 +619,64 @@ function collectFindings(){
   Object.keys(DATA).forEach(key => {
     DATA[key].items.forEach(it => {
       const s = state[key][it.name];
-      if (s.status !== 'ok') findings.push({section: DATA[key].title, name: it.name, status: s.status, note: s.note || '', repaired: false});
+      if (s.status !== 'baik'){
+        findings.push({
+          section: DATA[key].title, name: it.name, status: s.status, note: s.note || '',
+          weight: it.weight, safety: !!it.safety, repaired: false
+        });
+      }
     });
   });
   return findings;
 }
 
 function computeScore(){
+  let score = 0;
+  Object.keys(DATA).forEach(key => {
+    DATA[key].items.forEach(it => {
+      const s = state[key][it.name];
+      score += it.weight * CONDITIONS[s.status].mult;
+    });
+  });
+  score = Math.round(score * 100) / 100;
   const findings = collectFindings();
-  const deduction = findings.reduce((sum, f) => sum + POINTS[f.status], 0);
-  const score = Math.max(0, 100 - deduction);
-  const fatalCount = findings.filter(f => f.status === 'fatal').length;
-  const majorCount = findings.filter(f => f.status === 'major').length;
+  const fatalSafetyItems = findings.filter(f => f.safety && f.status === 'fatal').map(f => f.name);
+  const forced = fatalSafetyItems.length > 0;
   let statusLabel;
-  if (score >= 95) statusLabel = 'Sangat Baik';
-  else if (score >= 85) statusLabel = 'Baik';
-  else if (score >= 70) statusLabel = 'Perlu Perbaikan';
+  if (forced) statusLabel = 'Tidak Layak Operasional';
+  else if (score >= 85) statusLabel = 'Layak Operasional';
+  else if (score >= 75) statusLabel = 'Layak dengan Perbaikan';
   else statusLabel = 'Tidak Layak Operasional';
-  return {findings, score, fatalCount, majorCount, statusLabel};
+  return {findings, score, forced, fatalSafetyItems, statusLabel};
+}
+
+function statusColorFor(score, forced){
+  if (forced) return 'var(--red)';
+  if (score >= 85) return 'var(--green)';
+  if (score >= 75) return 'var(--amber)';
+  return 'var(--red)';
 }
 
 function renderScore(){
   const c = computeScore();
   lastComputed = c;
-  const {score, fatalCount, majorCount, statusLabel} = c;
+  const {score, forced, fatalSafetyItems, statusLabel} = c;
 
   document.getElementById('scoreReadout').textContent = score;
 
-  let statusColor;
-  if (score >= 95) statusColor = 'var(--green)';
-  else if (score >= 85) statusColor = 'var(--blue)';
-  else if (score >= 70) statusColor = 'var(--amber)';
-  else statusColor = 'var(--red)';
-
+  const statusColor = statusColorFor(score, forced);
   const statusEl = document.getElementById('scoreStatus');
   statusEl.textContent = statusLabel;
   statusEl.style.color = statusColor;
   statusEl.style.borderColor = statusColor;
+
+  const forcedEl = document.getElementById('scoreForced');
+  if (forced){
+    forcedEl.style.display = 'block';
+    forcedEl.textContent = `Dipaksa TLO oleh: ${fatalSafetyItems.join(', ')}`;
+  } else {
+    forcedEl.style.display = 'none';
+  }
 
   const pct = score / 100;
   const arc = document.getElementById('gaugeArc');
@@ -684,47 +690,45 @@ function renderScore(){
   const lampFatal = document.getElementById('lampFatal');
   const lampMajor = document.getElementById('lampMajor');
   const lampReady = document.getElementById('lampReady');
+  const totalTemuan = c.findings.length;
 
-  lampFatal.classList.toggle('on', fatalCount > 0);
-  lampFatal.classList.toggle('fatal', fatalCount > 0);
-  document.getElementById('lampFatalDetail').textContent = fatalCount > 0
-    ? `${fatalCount} item fatal \u2014 armada dilarang beroperasi`
-    : 'Tidak ada temuan fatal';
+  lampFatal.classList.toggle('on', forced);
+  lampFatal.classList.toggle('fatal', forced);
+  document.getElementById('lampFatalDetail').textContent = forced
+    ? `${fatalSafetyItems.join(', ')} \u2014 armada dilarang beroperasi`
+    : 'Tidak ada temuan fatal pada item keselamatan';
 
-  lampMajor.classList.toggle('on', majorCount >= 3);
-  lampMajor.classList.toggle('major', majorCount >= 3);
-  document.getElementById('lampMajorDetail').textContent = majorCount >= 3
-    ? `${majorCount} temuan major \u2014 jadwalkan perbaikan \u2264 7 hari`
-    : `${majorCount} temuan major`;
+  lampMajor.classList.toggle('on', totalTemuan > 0);
+  lampMajor.classList.toggle('major', totalTemuan > 0);
+  document.getElementById('lampMajorDetail').textContent = `${totalTemuan} item bukan kondisi Baik`;
 
-  const ready = fatalCount === 0 && score >= 70;
+  const ready = !forced && score >= 75;
   lampReady.classList.toggle('on', ready);
   lampReady.classList.toggle('ready', ready);
-  document.getElementById('lampReadyDetail').textContent = fatalCount > 0
-    ? 'Diblokir oleh temuan fatal'
-    : (score < 70 ? 'Diblokir oleh nilai < 70' : 'Armada dapat beroperasi');
+  document.getElementById('lampReadyDetail').textContent = forced
+    ? 'Diblokir oleh temuan fatal keselamatan'
+    : (score < 75 ? 'Diblokir oleh nilai < 75' : 'Armada dapat beroperasi');
 
-  document.getElementById('ruleFatal').classList.toggle('trig', fatalCount > 0);
-  document.getElementById('ruleMajor').classList.toggle('trig', majorCount >= 3);
+  document.getElementById('ruleFatal').classList.toggle('trig', forced);
 }
 
 function renderFindings(){
   const {findings} = lastComputed;
   const list = document.getElementById('findingsList');
   if (findings.length === 0){
-    list.innerHTML = '<div class="empty-note">Belum ada kerusakan dicatat.</div>';
+    list.innerHTML = '<div class="empty-note">Semua item masih dalam kondisi Baik.</div>';
     return;
   }
   list.innerHTML = '';
   findings.forEach(f => {
+    const contrib = f.weight * CONDITIONS[f.status].mult;
     const row = document.createElement('div');
     row.className = 'finding';
-    row.style.flexDirection = 'column';
-    row.style.alignItems = 'flex-start';
     row.innerHTML = `
       <div style="display:flex;justify-content:space-between;width:100%;">
-        <span>${f.name}</span><span class="tag ${f.status}">${LABELS[f.status]}</span>
+        <span>${f.name}${f.safety ? ' &#9888;' : ''}</span><span class="tag ${f.status}">${LABELS[f.status]}</span>
       </div>
+      <div style="font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;margin-top:2px;">Bobot ${f.weight}% &rarr; kontribusi ${contrib.toFixed(2)}</div>
       ${f.note ? `<div style="font-size:11.5px;color:var(--muted);font-style:italic;margin-top:2px;">${f.note}</div>` : ''}
     `;
     list.appendChild(row);
@@ -732,7 +736,7 @@ function renderFindings(){
 }
 
 document.getElementById('resetBtn').onclick = () => {
-  Object.keys(DATA).forEach(k => DATA[k].items.forEach(it => state[k][it.name] = {status:'ok', note:''}));
+  Object.keys(DATA).forEach(k => DATA[k].items.forEach(it => state[k][it.name] = {status:'baik', note:''}));
   editingKey = null;
   editingTimestamp = null;
   document.getElementById('saveMsg').textContent = '';
@@ -748,7 +752,7 @@ const SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkouBMh1L7c3_
 async function syncToSheet(record){
   if (!SHEET_SCRIPT_URL || SHEET_SCRIPT_URL.includes('PASTE_DEPLOYMENT_ID_DI_SINI')) return 'skip';
   const findingsText = (record.findings && record.findings.length)
-    ? record.findings.map(f => `${f.name} (${LABELS[f.status]}${f.note ? ': ' + f.note : ''})`).join('; ')
+    ? record.findings.map(f => `${f.name} (${LABELS[f.status]}, bobot ${f.weight}%${f.note ? ': ' + f.note : ''})`).join('; ')
     : 'Tidak ada temuan';
   const payload = {
     plate: record.plate,
@@ -756,19 +760,15 @@ async function syncToSheet(record){
     officer: record.officer,
     score: record.score,
     statusLabel: record.statusLabel,
-    fatalCount: record.fatalCount,
-    majorCount: record.majorCount,
+    forced: record.forced,
     findingsText: findingsText
   };
   try{
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 25000);
     await fetch(SHEET_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload),
-      signal: controller.signal
+      method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload), signal: controller.signal
     });
     clearTimeout(timeoutId);
     return 'ok';
@@ -798,9 +798,9 @@ async function saveInspection(){
     officer: document.getElementById('officerInput').value.trim() || '-',
     score: c.score,
     statusLabel: c.statusLabel,
+    forced: c.forced,
+    fatalSafetyItems: c.fatalSafetyItems,
     findings: c.findings,
-    fatalCount: c.fatalCount,
-    majorCount: c.majorCount,
     timestamp: isEditing ? editingTimestamp : Date.now(),
     updatedAt: isEditing ? Date.now() : undefined
   };
@@ -884,14 +884,16 @@ async function loadDashboard(){
 }
 
 function chartColors(){
+  const s = getComputedStyle(document.documentElement);
   return {
-    green: getComputedStyle(document.documentElement).getPropertyValue('--green').trim(),
-    amber: getComputedStyle(document.documentElement).getPropertyValue('--amber').trim(),
-    red: getComputedStyle(document.documentElement).getPropertyValue('--red').trim(),
-    blue: getComputedStyle(document.documentElement).getPropertyValue('--blue').trim(),
-    primary: getComputedStyle(document.documentElement).getPropertyValue('--primary').trim(),
-    muted: getComputedStyle(document.documentElement).getPropertyValue('--muted').trim(),
-    border: getComputedStyle(document.documentElement).getPropertyValue('--border').trim()
+    green: s.getPropertyValue('--green').trim(),
+    amber: s.getPropertyValue('--amber').trim(),
+    red: s.getPropertyValue('--red').trim(),
+    blue: s.getPropertyValue('--blue').trim(),
+    primary: s.getPropertyValue('--primary').trim(),
+    muted: s.getPropertyValue('--muted').trim(),
+    border: s.getPropertyValue('--border').trim(),
+    text: s.getPropertyValue('--text').trim()
   };
 }
 
@@ -899,38 +901,29 @@ function updateCharts(records){
   const c = chartColors();
   const baseFont = { family: 'Inter', size: 11 };
 
-  // --- Status distribution donut ---
-  const statusCounts = {'Sangat Baik':0,'Baik':0,'Perlu Perbaikan':0,'Tidak Layak Operasional':0};
+  const statusCounts = {'Layak Operasional':0,'Layak dengan Perbaikan':0,'Tidak Layak Operasional':0};
   records.forEach(r => { if (statusCounts[r.statusLabel] !== undefined) statusCounts[r.statusLabel]++; });
   const statusCtx = document.getElementById('statusChart');
   if (statusChart) statusChart.destroy();
-  if (records.length === 0){
-    statusCtx.getContext('2d').clearRect(0,0,statusCtx.width,statusCtx.height);
-  } else {
+  if (records.length > 0){
     statusChart = new Chart(statusCtx, {
       type: 'doughnut',
       data: {
         labels: Object.keys(statusCounts),
-        datasets: [{
-          data: Object.values(statusCounts),
-          backgroundColor: [c.green, c.blue, c.amber, c.red],
-          borderWidth: 2,
-          borderColor: '#ffffff'
-        }]
+        datasets: [{ data: Object.values(statusCounts), backgroundColor: [c.green, c.amber, c.red], borderWidth: 2, borderColor: '#ffffff' }]
       },
       options: {
         responsive: true, maintainAspectRatio: false, cutout: '62%',
-        plugins: { legend: { position: 'bottom', labels: { font: baseFont, boxWidth: 10, padding: 10 } } }
+        plugins: { legend: { position: 'bottom', labels: { font: baseFont, boxWidth: 10, padding: 8 } } }
       }
     });
   }
 
-  // --- Category totals bar ---
-  const catCounts = {Minor:0, Major:0, Fatal:0};
+  const condCounts = {Minor:0, Major:0, Fatal:0};
   records.forEach(r => (r.findings || []).forEach(f => {
-    if (f.status === 'minor') catCounts.Minor++;
-    else if (f.status === 'major') catCounts.Major++;
-    else if (f.status === 'fatal') catCounts.Fatal++;
+    if (f.status === 'minor') condCounts.Minor++;
+    else if (f.status === 'major') condCounts.Major++;
+    else if (f.status === 'fatal') condCounts.Fatal++;
   }));
   const catCtx = document.getElementById('categoryChart');
   if (categoryChart) categoryChart.destroy();
@@ -938,12 +931,7 @@ function updateCharts(records){
     type: 'bar',
     data: {
       labels: ['Minor','Major','Fatal'],
-      datasets: [{
-        data: [catCounts.Minor, catCounts.Major, catCounts.Fatal],
-        backgroundColor: [c.green, c.amber, c.red],
-        borderRadius: 6,
-        maxBarThickness: 46
-      }]
+      datasets: [{ data: [condCounts.Minor, condCounts.Major, condCounts.Fatal], backgroundColor: [c.green, c.amber, c.red], borderRadius: 6, maxBarThickness: 46 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
@@ -955,7 +943,6 @@ function updateCharts(records){
     }
   });
 
-  // --- Score per vehicle (worst first) ---
   const sorted = [...records].sort((a,b) => a.score - b.score).slice(0, 10);
   const scoreCtx = document.getElementById('scoreChart');
   if (scoreChart) scoreChart.destroy();
@@ -965,14 +952,12 @@ function updateCharts(records){
       labels: sorted.map(r => r.plate),
       datasets: [{
         data: sorted.map(r => r.score),
-        backgroundColor: sorted.map(r => r.score >= 95 ? c.green : r.score >= 85 ? c.blue : r.score >= 70 ? c.amber : c.red),
-        borderRadius: 6,
-        maxBarThickness: 22
+        backgroundColor: sorted.map(r => statusColorFor(r.score, r.forced).replace('var(--green)',c.green).replace('var(--amber)',c.amber).replace('var(--red)',c.red)),
+        borderRadius: 6, maxBarThickness: 22
       }]
     },
     options: {
-      indexAxis: 'y',
-      responsive: true, maintainAspectRatio: false,
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
         x: { beginAtZero: true, max: 100, ticks: { font: baseFont }, grid: { color: c.border } },
@@ -996,11 +981,10 @@ function renderFleetGrid(){
   wrap.className = 'fleet-grid';
 
   filtered.forEach((rec) => {
-    let statusColor;
-    if (rec.score >= 95) statusColor = 'var(--green)';
-    else if (rec.score >= 85) statusColor = 'var(--blue)';
-    else if (rec.score >= 70) statusColor = 'var(--amber)';
-    else statusColor = 'var(--red)';
+    const statusColor = statusColorFor(rec.score, rec.forced);
+    const minorN = rec.findings.filter(f=>f.status==='minor').length;
+    const majorN = rec.findings.filter(f=>f.status==='major').length;
+    const fatalN = rec.findings.filter(f=>f.status==='fatal').length;
 
     const card = document.createElement('div');
     card.className = 'fleet-card';
@@ -1010,12 +994,12 @@ function renderFleetGrid(){
       <div class="meta">${rec.date || '-'} &middot; ${rec.officer || '-'}</div>
       <div class="row2">
         <div class="score" style="color:${statusColor}">${rec.score}</div>
-        <div class="status-pill" style="background:${statusColor}22;color:${statusColor};border:1px solid ${statusColor}">${rec.statusLabel}</div>
+        <div class="status-pill" style="background:${statusColor}22;color:${statusColor};border:1px solid ${statusColor}">${rec.statusLabel}${rec.forced ? ' (paksa)' : ''}</div>
       </div>
       <div class="counts">
-        ${rec.fatalCount > 0 ? `<span class="mini-tag" style="background:var(--red-tint);color:var(--red)">${rec.fatalCount} Fatal</span>` : ''}
-        ${rec.majorCount > 0 ? `<span class="mini-tag" style="background:var(--amber-tint);color:var(--amber)">${rec.majorCount} Major</span>` : ''}
-        ${(rec.findings.length - rec.fatalCount - rec.majorCount) > 0 ? `<span class="mini-tag" style="background:var(--green-tint);color:var(--green)">${rec.findings.length - rec.fatalCount - rec.majorCount} Minor</span>` : ''}
+        ${fatalN > 0 ? `<span class="mini-tag" style="background:var(--red-tint);color:var(--red)">${fatalN} Fatal</span>` : ''}
+        ${majorN > 0 ? `<span class="mini-tag" style="background:var(--amber-tint);color:var(--amber)">${majorN} Major</span>` : ''}
+        ${minorN > 0 ? `<span class="mini-tag" style="background:var(--green-tint);color:var(--green)">${minorN} Minor</span>` : ''}
         ${rec.findings.length === 0 ? `<span class="mini-tag" style="background:var(--panel-2);color:var(--muted)">Tidak ada temuan</span>` : ''}
         ${rec.findings.length > 0 ? (() => {
           const repairedN = rec.findings.filter(f => f.repaired).length;
@@ -1040,15 +1024,16 @@ function openDetail(rec){
   document.getElementById('detailMeta').textContent = `${rec.date || '-'} \u00b7 Petugas: ${rec.officer || '-'}`;
   document.getElementById('detailScore').textContent = rec.score;
 
-  let statusColor;
-  if (rec.score >= 95) statusColor = 'var(--green)';
-  else if (rec.score >= 85) statusColor = 'var(--blue)';
-  else if (rec.score >= 70) statusColor = 'var(--amber)';
-  else statusColor = 'var(--red)';
+  const statusColor = statusColorFor(rec.score, rec.forced);
   const st = document.getElementById('detailStatus');
   st.textContent = rec.statusLabel;
   st.style.color = statusColor;
   st.style.borderColor = statusColor;
+
+  const banner = document.getElementById('detailTloBanner');
+  banner.innerHTML = rec.forced
+    ? `<div class="detail-tlo-banner">&#9888; Dipaksa Tidak Layak Operasional karena Fatal pada item keselamatan: ${(rec.fatalSafetyItems||[]).join(', ')}</div>`
+    : '';
 
   renderDetailFindings();
   document.getElementById('overlay').classList.add('active');
@@ -1081,7 +1066,8 @@ function renderDetailFindings(){
       <div class="detail-section-title">${sec}</div>
       ${bySection[sec].map(f => `
         <div class="detail-finding ${f.repaired ? 'is-repaired' : ''}">
-          <div class="detail-finding-top"><span>${f.name}</span><span class="tag ${f.status}">${LABELS[f.status]}</span></div>
+          <div class="detail-finding-top"><span>${f.name}${f.safety ? ' &#9888;' : ''}</span><span class="tag ${f.status}">${LABELS[f.status]}</span></div>
+          <div class="detail-finding-cond" style="font-style:normal;">Bobot ${f.weight}% &rarr; kontribusi ${(f.weight*CONDITIONS[f.status].mult).toFixed(2)}</div>
           ${f.note ? `<div class="detail-finding-cond">${f.note}</div>` : ''}
           <label class="repair-toggle">
             <input type="checkbox" data-idx="${f._idx}" ${f.repaired ? 'checked' : ''}>
@@ -1122,7 +1108,7 @@ function editRecord(rec){
   document.getElementById('officerInput').value = rec.officer === '-' ? '' : rec.officer;
   if (rec.date) document.getElementById('dateInput').value = rec.date;
 
-  Object.keys(DATA).forEach(k => DATA[k].items.forEach(it => state[k][it.name] = {status:'ok', note:''}));
+  Object.keys(DATA).forEach(k => DATA[k].items.forEach(it => state[k][it.name] = {status:'baik', note:''}));
   (rec.findings || []).forEach(f => {
     const secKey = Object.keys(DATA).find(k => DATA[k].title === f.section);
     if (secKey && state[secKey][f.name]) state[secKey][f.name] = {status: f.status, note: f.note || ''};
