@@ -395,7 +395,7 @@
 
   <!-- ============ SCREEN: DASHBOARD ============ -->
   <div class="screen" id="screenDash">
-    <div class="storage-note">Data yang disimpan bersifat bersama (shared) &mdash; setiap inspeksi yang disimpan dapat dilihat oleh semua pengguna dashboard ini.</div>
+    <div class="storage-note">Semua data disimpan langsung di Google Sheet (bukan lagi penyimpanan khusus Claude) &mdash; sehingga dashboard ini bisa dibuka dan diakses dari mana saja, termasuk saat di-hosting di GitHub Pages.</div>
 
     <div class="charts-grid">
       <div class="chart-card">
@@ -749,33 +749,33 @@ document.getElementById('dateInput').valueAsDate = new Date();
 
 const SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkouBMh1L7c3_i9qrTAAeWWLHsF6kxJGz7AwEjteGcaK3F0cKoPS5m1LHNyt5JsZlcXQ/exec';
 
-async function syncToSheet(record){
-  if (!SHEET_SCRIPT_URL || SHEET_SCRIPT_URL.includes('PASTE_DEPLOYMENT_ID_DI_SINI')) return 'skip';
-  const findingsText = (record.findings && record.findings.length)
-    ? record.findings.map(f => `${f.name} (${LABELS[f.status]}, bobot ${f.weight}%${f.note ? ': ' + f.note : ''})`).join('; ')
-    : 'Tidak ada temuan';
-  const payload = {
-    plate: record.plate,
-    date: record.date,
-    officer: record.officer,
-    score: record.score,
-    statusLabel: record.statusLabel,
-    forced: record.forced,
-    findingsText: findingsText
-  };
-  try{
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 25000);
-    await fetch(SHEET_SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload), signal: controller.signal
-    });
-    clearTimeout(timeoutId);
-    return 'ok';
-  }catch(e){
-    console.error('Gagal sync ke Google Sheet:', e);
-    return 'error';
-  }
+/* Simpan / perbarui satu record ke Google Sheet (upsert berdasarkan id).
+   Content-Type text/plain dipakai supaya browser TIDAK mengirim preflight OPTIONS
+   (Apps Script tidak menangani preflight), sehingga fetch normal (mode 'cors')
+   bisa jalan dan responsnya bisa dibaca. */
+async function saveToSheet(record){
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 25000);
+  const res = await fetch(SHEET_SCRIPT_URL, {
+    method: 'POST',
+    headers: {'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(record),
+    signal: controller.signal
+  });
+  clearTimeout(timeoutId);
+  const data = await res.json();
+  if (data.status !== 'ok') throw new Error(data.message || 'Gagal menyimpan ke Sheet');
+  return data;
+}
+
+async function loadFromSheet(){
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 25000);
+  const res = await fetch(SHEET_SCRIPT_URL, { method: 'GET', signal: controller.signal });
+  clearTimeout(timeoutId);
+  const data = await res.json();
+  if (data.status !== 'ok') throw new Error(data.message || 'Gagal memuat data');
+  return data.records || [];
 }
 
 function slugify(plate){
@@ -793,6 +793,7 @@ async function saveInspection(){
   const c = computeScore();
   const isEditing = !!editingKey;
   const record = {
+    id: isEditing ? editingKey : `${slugify(plateRaw)}_${Date.now()}`,
     plate: plateRaw,
     date: document.getElementById('dateInput').value,
     officer: document.getElementById('officerInput').value.trim() || '-',
@@ -802,37 +803,21 @@ async function saveInspection(){
     fatalSafetyItems: c.fatalSafetyItems,
     findings: c.findings,
     timestamp: isEditing ? editingTimestamp : Date.now(),
-    updatedAt: isEditing ? Date.now() : undefined
+    updatedAt: Date.now()
   };
-  const key = isEditing ? editingKey : `inspeksi:${slugify(plateRaw)}:${record.timestamp}`;
   const saveBtn = document.getElementById('saveBtn');
   saveBtn.disabled = true;
   msg.textContent = 'Menyimpan...';
   msg.className = 'save-msg';
   try{
-    const result = await window.storage.set(key, JSON.stringify(record), true);
-    if (result){
-      const sheetResult = await syncToSheet(record);
-      const savedText = isEditing ? 'Perubahan tersimpan' : 'Tersimpan';
-      if (sheetResult === 'ok'){
-        msg.textContent = `${savedText} \u2713 — dashboard & Google Sheet ter-update`;
-        msg.className = 'save-msg ok';
-      } else if (sheetResult === 'skip'){
-        msg.textContent = `${savedText} \u2713 di dashboard (sinkron Sheet belum diaktifkan)`;
-        msg.className = 'save-msg ok';
-      } else {
-        msg.textContent = `${savedText} di dashboard, tapi gagal sinkron ke Google Sheet.`;
-        msg.className = 'save-msg err';
-      }
-      editingKey = null;
-      editingTimestamp = null;
-    } else {
-      msg.textContent = 'Gagal menyimpan, coba lagi.';
-      msg.className = 'save-msg err';
-    }
+    await saveToSheet(record);
+    msg.textContent = (isEditing ? 'Perubahan tersimpan' : 'Tersimpan') + ' \u2713 ke Google Sheet';
+    msg.className = 'save-msg ok';
+    editingKey = null;
+    editingTimestamp = null;
   }catch(e){
-    console.error('Storage error:', e);
-    msg.textContent = 'Gagal menyimpan, coba lagi.';
+    console.error('Gagal menyimpan ke Sheet:', e);
+    msg.textContent = 'Gagal menyimpan. Cek koneksi atau deployment Apps Script.';
     msg.className = 'save-msg err';
   }finally{
     saveBtn.disabled = false;
@@ -849,37 +834,20 @@ async function loadDashboard(){
   const grid = document.getElementById('fleetGrid');
   grid.innerHTML = '<div class="dash-loading">Memuat data armada...</div>';
   try{
-    const listResult = await window.storage.list('inspeksi:', true);
-    const keys = (listResult && listResult.keys) ? listResult.keys : [];
-    if (keys.length === 0){
-      fleetRecords = [];
-      grid.innerHTML = '<div class="dash-empty">Belum ada hasil inspeksi tersimpan.<br>Isi form di "Input Inspeksi" lalu klik "Simpan ke Dashboard".</div>';
-      document.getElementById('navDashBadge').textContent = '0';
-      updateCharts([]);
-      return;
-    }
-    const records = [];
-    for (const k of keys){
-      try{
-        const r = await window.storage.get(k, true);
-        if (r && r.value){
-          const parsed = JSON.parse(r.value);
-          parsed._key = k;
-          if (parsed.findings) parsed.findings.forEach(f => { if (typeof f.repaired !== 'boolean') f.repaired = false; });
-          records.push(parsed);
-        }
-      }catch(e){
-        console.error('Gagal memuat key', k, e);
-      }
-    }
-    records.sort((a,b) => b.timestamp - a.timestamp);
+    const records = await loadFromSheet();
+    records.forEach(r => { if (r.findings) r.findings.forEach(f => { if (typeof f.repaired !== 'boolean') f.repaired = false; }); });
+    records.sort((a,b) => (b.timestamp||0) - (a.timestamp||0));
     fleetRecords = records;
     document.getElementById('navDashBadge').textContent = String(records.length);
-    renderFleetGrid();
+    if (records.length === 0){
+      grid.innerHTML = '<div class="dash-empty">Belum ada hasil inspeksi tersimpan.<br>Isi form di "Input Inspeksi" lalu klik "Simpan ke Dashboard".</div>';
+    } else {
+      renderFleetGrid();
+    }
     updateCharts(records);
   }catch(e){
-    console.error('Storage error:', e);
-    grid.innerHTML = '<div class="dash-empty">Gagal memuat data dari penyimpanan. Klik Muat Ulang untuk mencoba lagi.</div>';
+    console.error('Gagal memuat dari Sheet:', e);
+    grid.innerHTML = '<div class="dash-empty">Gagal memuat data dari Google Sheet. Pastikan deployment Apps Script aktif untuk "Anyone", lalu klik Muat Ulang.</div>';
   }
 }
 
@@ -1090,9 +1058,8 @@ async function toggleRepair(idx, checked){
   rec.findings[idx].repaired = checked;
   renderDetailFindings();
   try{
-    const {_key, ...toSave} = rec;
-    await window.storage.set(_key, JSON.stringify(toSave), true);
-    const cached = fleetRecords.find(r => r._key === rec._key);
+    await saveToSheet(rec);
+    const cached = fleetRecords.find(r => r.id === rec.id);
     if (cached) cached.findings[idx].repaired = checked;
     renderFleetGrid();
   }catch(e){
@@ -1101,7 +1068,7 @@ async function toggleRepair(idx, checked){
 }
 
 function editRecord(rec){
-  editingKey = rec._key;
+  editingKey = rec.id;
   editingTimestamp = rec.timestamp;
 
   document.getElementById('plateInput').value = rec.plate;
